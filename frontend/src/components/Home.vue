@@ -18,32 +18,31 @@
 
             <form class="d-flex">
                 <input class="form-control me-2" type="text" v-model="search" placeholder="Search" aria-label="Search">
-                <button @click.prevent="searchBooks()" class="btn btn-success"><i class="fa fa-search"></i></button>
+                <button @click.prevent="searchBooks()" class="btn btn-success">Search</i></button>
             </form>
         </div>
 
         <div v-if="showsearch==true">
-                <div class="app50">
-                    <div v-for="searchbooks in searchbooks" v-bind:key="searchbooks.id" class="col-md-6"></div>
-                        <div class="container">
-                            <div class="row" >
-                                <div class="col-md-2 offset-md-1 app6">Image</div>
-                                <div class="col app8">
-                                    <div class="app10">
-                                        <h5>Title : {{searchbooks.Title}}</h5>
-                                        <h5>Genre : {{searchbooks.Genre}}</h5>
-                                        <h5>Description : {{searchbooks.Description}}</h5>
-                                        <h5>Price : Rs.{{searchbooks.Price}}</h5>
-                                    </div>
-                                </div>
-                                <div class="app7">
-                                    <button type="button" class="btn btn-success" @click="borrowBooks($event)" v-bind:id="searchbooks.id">Borrow</button>
-                                </div>
+            <div id="app5" v-for="searchbooks in searchbooks" :key="searchbooks.id" class="col-md-6">
+                <div class="container">
+                    <div class="row" >
+                        <div class="col-md-2 offset-md-1 app6">Image</div>
+                        <div class="col app8">
+                            <div class="app10">
+                                <h5>Title : {{searchbooks.Title}}</h5>
+                                <h5>Genre : {{searchbooks.Genre}}</h5>
+                                <h5>Description : {{searchbooks.Description}}</h5>
+                                <h5>Price : Rs.{{searchbooks.Price}}</h5>
                             </div>
                         </div>
+                        <div class="app7">
+                            <button type="button" class="btn btn-success" @click="borrowBooks($event)" v-bind:id="searchbooks.id">Borrow</button>
+                        </div>
+                    </div>
                 </div>
             </div>
-        <div v-if="showsearch==true">
+        </div>
+        <div v-if="showsearch==false">
             <div id="app5" v-for="books in pageOfItems" :key="books.id">
                 <div class="container">
                     <div class="row" >
@@ -62,12 +61,12 @@
                     </div>
                 </div>
             </div>
+            <div class="card text-center m-3">
+                <div class="card-footer pb-0 pt-3">
+                    <jw-pagination :pageSize=2 :items="books" @changePage="onChangePage"></jw-pagination>
+                </div>
+            </div> 
         </div>   
-        <div class="card text-center m-3">
-            <div class="card-footer pb-0 pt-3">
-                <jw-pagination :pageSize=3 :items="books" @changePage="onChangePage"></jw-pagination>
-            </div>
-        </div> 
     </div>
 </template>
 
@@ -77,9 +76,10 @@ export default {
     data(){
         return{
             books:[],
+            search : '',
             searchbooks:[],
             pageOfItems: [],
-            search,
+        
             showsearch: false
         }
     },
@@ -120,8 +120,15 @@ export default {
 
         searchBooks(){
             this.$http.get("http://localhost:8000/api/search?q=" +this.search)
-            .then(function(response) {
-                console.log(response);
+            .then(response => response.json())
+            .then(response => {
+                this.searchbooks = response;
+                this.search='';
+                this.showsearch = true;
+            })
+
+            .catch(err => {
+                console.log(err);
             });
         }
     }

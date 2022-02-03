@@ -104,8 +104,7 @@ class BooksController extends Controller
     public static function search(Request $request){
 
         $search = $request->get('q');
-        $searchdata = books::where('Description', 'LIKE','%'.$search.'%')->get();
-        return response()->json($searchdata);
+        return books::where('Description', 'like','%'.$search.'%')->get();
 
     }
 }
