@@ -24,27 +24,7 @@ class BooksController extends Controller
 
     }
 
-    public function addBooks(Request $request){
-
-        $bookid = 1;
-        $bTitle ="lll" ;
-        $bDescription = "lll";
-        $bGenere = "lll";
-        $bPrice = 100.23;
-
-        $BookStoreUser = new BookStoreUser();
-
-        $BookStoreUser->bid = $bookid; 
-        $BookStoreUser->Title = $bTitle;
-        $BookStoreUser->Description =  $bDescription;
-        $BookStoreUser->Genre = $bGenere;
-        $BookStoreUser->Price = $bPrice;
-        $BookStoreUser->save();
-
-
-    }
-    
-
+    //in bookshelf remove books
     public static function  borrowBooks($id){
         
         $book = books::find($id);
@@ -72,6 +52,8 @@ class BooksController extends Controller
         return response()->json(['msg'=>"Books borrowed"],201);
 
     }
+
+    //in profile remove books
 
     public static function  removeBooks($id){
         
@@ -121,4 +103,24 @@ class BooksController extends Controller
         return books::where('Genre', 'like','%'.$search.'%')->get();
 
     }
+    /*
+        public function addBooks(Request $request){
+
+        $bookid = 1;
+        $bTitle ="lll" ;
+        $bDescription = "lll";
+        $bGenere = "lll";
+        $bPrice = 100.23;
+
+        $BookStoreUser = new BookStoreUser();
+
+        $BookStoreUser->bid = $bookid; 
+        $BookStoreUser->Title = $bTitle;
+        $BookStoreUser->Description =  $bDescription;
+        $BookStoreUser->Genre = $bGenere;
+        $BookStoreUser->Price = $bPrice;
+        $BookStoreUser->save();
+
+
+    }*/
 }
