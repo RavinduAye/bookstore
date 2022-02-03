@@ -6,10 +6,10 @@
                     <div class="col-md-2 offset-md-1 app6">Image</div>
                     <div class="col app8">
                         <div class="app10">
-                            <h5>Title : {{borrowbooks.Title}}</h5>
-                            <h5>Genre : {{borrowbooks.Genre}}</h5>
-                            <h5>Description : {{borrowbooks.Description}}</h5>
-                            <h5>Price : Rs.{{borrowbooks.Price}}</h5>
+                            <p id="f4">{{borrowbooks.Title}}</p>
+                            <p id="f5">{{borrowbooks.Genre}}</p>
+                            <p id="f6">{{borrowbooks.Description}}</p>
+                            <span><c>Rs.</c>{{borrowbooks.Price}}</span>
                         </div>
                     </div>
                     <div class="app7">
@@ -53,6 +53,24 @@
 </script>
 
 <style>
+
+/* fonts design */
+
+ span { font-size: 2.5em; font-weight:500;}
+ span c { font-size: 60%; font-weight: normal; font-family: oblique;}
+ #f4{
+     font-size: 1.8pc;
+     font-weight: bold;
+     font-family: Lucida;
+ }
+ #f5{
+     font-size: 1.6pc;
+     font-family: Arial, sans-serif;
+ }
+ #f6{
+     font-size: 1.5pc;
+     font-family: Lucida;
+ }
 
 #app5{
     display: flex;

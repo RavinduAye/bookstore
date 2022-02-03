@@ -36,4 +36,6 @@ Route::get('/add',[BooksController::class,'addBooks']);
 // Route::get('/getbooks',BooksController@getBooks);
 
 
-Route::get('/search',[BooksController::class,'search']);
+Route::get('/searcht',[BooksController::class,'search_title']);
+Route::get('/searchd',[BooksController::class,'search_description']);
+Route::get('/searchg',[BooksController::class,'search_genre']);

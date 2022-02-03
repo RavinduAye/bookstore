@@ -101,10 +101,24 @@ class BooksController extends Controller
 
     }
 
-    public static function search(Request $request){
+    public static function search_title(Request $request){
+
+        $search = $request->get('q');
+        return books::where('Title', 'like','%'.$search.'%')->get();
+
+    }
+
+    public static function search_description(Request $request){
 
         $search = $request->get('q');
         return books::where('Description', 'like','%'.$search.'%')->get();
+
+    }
+
+    public static function search_genre(Request $request){
+
+        $search = $request->get('q');
+        return books::where('Genre', 'like','%'.$search.'%')->get();
 
     }
 }
