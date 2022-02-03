@@ -9,7 +9,7 @@
                             <p id="f4">{{borrowbooks.Title}}</p>
                             <p id="f5">{{borrowbooks.Genre}}</p>
                             <p id="f6">{{borrowbooks.Description}}</p>
-                            <span><c>Rs.</c>{{borrowbooks.Price}}</span>
+                            <span><b>Rs.</b>{{borrowbooks.Price}}</span>
                         </div>
                     </div>
                     <div class="app7">
@@ -40,7 +40,7 @@
             this.$http.delete("http://localhost:8000/api/remove/" +event.target.id)
             .then(function(response) {
                 
-                var position = this.borrowbooks.findIndex( function (element)
+                var position = this.borrowbooks.findIndex( function(element)
                 {
                     return element.id == event.target.id;
                 });
@@ -57,7 +57,7 @@
 /* fonts design */
 
  span { font-size: 2.5em; font-weight:500;}
- span c { font-size: 60%; font-weight: normal; font-family: oblique;}
+ span b { font-size: 60%; font-weight: normal; font-family: oblique;}
  #f4{
      font-size: 1.8pc;
      font-weight: bold;
